@@ -153,7 +153,7 @@ Controlador: La lógica de negocio que conecta el modelo y la vista.
 │   ├── /tests
 │   │   └── meme.test.ts --  **Pruebas para los endpoints de memes**
 
-## Ahora vamos con la parte del  testing
+## Testing
 
 ##### Después que instalas MySQL Workbench creas una database con el siguiente comando:
 ````
@@ -169,7 +169,7 @@ CREATE TABLE nombre_de_la_tabla (
     columna2 INT,
     columna3 DATE,);
 ````
-##### Eso es para hacer las columnas y especiificarle su tipo de dato, y haces el mismo comando sobre la linea Ctrl +Enter para verificar
+##### Eso es para hacer las columnas y especificarle su tipo de dato, y haces el mismo comando sobre la linea Ctrl +Enter para verificar
 
 #### luego vas al proyecto y en tu archivo .env pones lo siguiente:
 ````
@@ -186,7 +186,7 @@ PORT=3000
 ````
 npm run test
 ````
-#### Tambien se ha añadido una carperta de Interfaces donde se crea un archivo interfaces con el siguiente comando para usarlo en el Model:
+#### También se ha añadido una carperta de Interfaces donde se crea un archivo interfaces con el siguiente comando para usarlo en el Model:
 ````
 export interface CatMeme {
     id?: number
@@ -205,7 +205,7 @@ express-validator es una biblioteca que facilita la validación y sanitización 
 
 ### Creamos una carpeta para la validacion y haremos un archivo ej: 
 nombre_de_tu_archivoValidator.ts
-##### para continuar  pegas el siguiente cofigo en tu archivo y modificas segun tus preferencias:
+##### para continuar  pegas el siguiente código en tu archivo y modificas segun tus preferencias:
 ````
 import { check, param } from 'express-validator';
 
@@ -257,82 +257,6 @@ export const validationHandler = (req: Request, res: Response, next: NextFunctio
   ````
   const BaseUrl = "http://localhost:3000/api/memes"; 
   ````
-#### Este seria el codigo completo del Front en el archivo de services.js:
-  
-````
-import axios from "axios";
-
-const BaseUrl = "http://localhost:3000/api/memes"; // Cambia por la URL de tu API si es necesario
-
-// GET Obtener todos los memes
-export const getMemes = async () => {
-  try {
-    // Agregamos un parámetro de consulta aleatorio a la URL
-    const response = await axios.get(BaseUrl + "?_=" + new Date().getTime());
-    return response.data;
-  } catch (error) {
-    console.error("Error al obtener los memes:", error);
-    throw error;
-  }
-};
-
-// Obtener un meme por ID
-export const getMemeById = async (id) => {
-  try {
-    const response = await axios.get(`${BaseUrl}/${id}`);
-    return response.data;
-  } catch (error) {
-    console.error("Error al obtener el meme:", error);
-    throw error;
-  }
-};
-
-// Obtener memes por categoría
-export const getMemeByCategory = async (category) => {
-  try {
-    const response = await axios.get(
-      `${BaseUrl}?category=${encodeURIComponent(category)}`
-    );
-    console.log("Respuesta de la API por categoría:", response.data); // Verifica la respuesta
-    return response.data;
-  } catch (error) {
-    console.error("Error al obtener memes por categoría:", error);
-    throw error;
-  }
-};
-
-// POST Crear un nuevo meme
-export const createMeme = async (memeData) => {
-  try {
-    const response = await axios.post(BaseUrl, memeData);
-    return response.data;
-  } catch (error) {
-    console.error("Error al crear el meme:", error);
-    throw error;
-  }
-};
-
-// Actualizar un meme existente por ID
-export const updateMeme = async (id, updatedMemeData) => {
-  try {
-    const response = await axios.put(`${BaseUrl}/${id}`, updatedMemeData);
-    return response.data;
-  } catch (error) {
-    console.error("Error al actualizar el meme:", error);
-    throw error;
-  }
-};
-
-// Eliminar un meme por ID
-export const deleteMeme = async (id) => {
-  try {
-    await axios.delete(`${BaseUrl}/${id}`);
-  } catch (error) {
-    console.error("Error al eliminar el meme:", error);
-    throw error;
-  }
-}
-  ````
 
 ## 🔮 Mirando al futuro
 
@@ -348,6 +272,3 @@ Omar Lengua - [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-th
 Enmanuel Feliciano - [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com) [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/enmanuelfeliciano/)
 
 Wilder Aguilar - [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Wilder-Aguilar) [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/wilderaguilar/)
-
-# Licencia 📄
-Este proyecto está bajo la Licencia ((Tu Licencia))
